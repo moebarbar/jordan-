@@ -10,9 +10,11 @@ gsap.registerPlugin(ScrollTrigger);
 const MagneticButton = ({
   children,
   className,
+  onClick,
 }: {
   children: React.ReactNode;
   className?: string;
+  onClick?: () => void;
 }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -47,6 +49,7 @@ const MagneticButton = ({
     <button
       ref={buttonRef}
       className={className}
+      onClick={onClick}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
@@ -177,7 +180,10 @@ const Footer = () => {
                 {footerConfig.description}
               </p>
               {footerConfig.ctaText && (
-                <MagneticButton className="relative mt-8 px-8 py-4 border border-kaleo-cream/30 rounded-full font-body text-sm uppercase tracking-wider overflow-hidden transition-colors hover:border-kaleo-terracotta">
+                <MagneticButton 
+                  className="relative mt-8 px-8 py-4 border border-kaleo-cream/30 rounded-full font-body text-sm uppercase tracking-wider overflow-hidden transition-colors hover:border-kaleo-terracotta"
+                  onClick={() => window.open('https://international.visitjordan.com/', '_blank', 'noopener,noreferrer')}
+                >
                   <span className="flex items-center gap-2">
                     {footerConfig.ctaText}
                     <ArrowUpRight className="w-4 h-4" />
